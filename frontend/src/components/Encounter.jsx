@@ -1,11 +1,19 @@
 import { useState, useEffect } from "react";
 
+const usersPokemon = [
+    "https://pokeapi.co/api/v2/pokemon/bulbasaur",
+    "https://pokeapi.co/api/v2/pokemon/charizard",
+    "https://pokeapi.co/api/v2/pokemon/poliwhirl"
+];
+
+
 function Encounter(props){
     const encId = props.encId
 
     const locKey = 'https://pokeapi.co/api/v2/location';
 
     const [encounter, setEncounter] = useState(null);
+    const [selectedAlly, setSelectedAlly] = useState(null);
 
     useEffect(() => {
         fetch(`${locKey}/${encId}`)
@@ -35,12 +43,67 @@ function Encounter(props){
         .catch(err => console.error(err));
     }, [encId]);
 
+    const [pokemons, setPokemons] = useState(null);
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const result = [];
+                usersPokemon.forEach(async url => {
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    result.push(data);
+                });
+                setPokemons(result);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchData();
+    }, []);
+
+
+    const handleAllySelection = (selectedPokemon) => {
+        setSelectedAlly(selectedPokemon);
+    }
+
     return (
-    <div>
-        {encounter && <img src={encounter.sprites.front_default} alt={encounter.name}></img>}
-        {encounter && <p>A wild {encounter.name} appeared!</p>}
-    </div>
-        )
+        <div>
+            <div className="enemy-container">
+                {encounter && !selectedAlly && (
+                    <div>
+                        <img src={encounter.sprites.front_default} alt={encounter.name}></img>
+                        <p>{encounter.name.includes('location') ? "This location doesn't seem to have any pokémon" : `A wild ${encounter.name} appeared!`}</p>
+                    </div>
+                )}
+                {selectedAlly && (
+                    <div className="battle">
+                        <div>
+                            <img src={encounter.sprites.front_default} alt={encounter.name}></img>
+                            <p>{encounter.name}</p>
+                        </div>
+                        <div className="ally-container">
+                            <img src={selectedAlly.sprites.front_default} alt={selectedAlly.name}></img>
+                            <p>{selectedAlly.name}</p>
+                        </div>
+                    </div>
+                )}
+            </div>
+            {!selectedAlly && (
+                <div>
+                    <p className="info">Choose your pokemon to fight!</p>
+                    <div className="ally-container">
+                        {pokemons && pokemons.map((data, index) => (
+                            <div key={index} onClick={() => handleAllySelection(data)}>
+                                <img src={data.sprites.front_default} alt={data.name}></img>
+                                <p>{data.name}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
 
 }
 
