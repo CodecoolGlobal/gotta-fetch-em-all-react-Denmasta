@@ -1,13 +1,28 @@
 import React from 'react'
+import { useState, useEffect } from "react";
 
 function Locations(props) {
-    const locationName = props.label;
-    const className = props.className;
+    //const setPage = props.setPage;
+
+    const locKey = 'https://pokeapi.co/api/v2/location';
+  
+    const [locations, setLocation] = useState(null);
+  
+    useEffect(() => {
+      fetch(`${locKey}`)
+          .then(res => res.json())
+          .then(data => { setLocation(data) })
+    },[]);
+  
     return (
-        <div className={className}>
-            <li>{locationName}</li>
+        <div className='page'>
+            {locations && <ul>
+                {locations.results.map((location,index) => (
+                 <li key={index} className='location'>{location.name}</li>
+                ))}
+            </ul>}
         </div>
     );
 };
 
-export default Locations
+export default Locations;
