@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from "react";
 
 function Locations(props) {
-    //const setPage = props.setPage;
+    const setPage = props.setPage;
 
     const locKey = 'https://pokeapi.co/api/v2/location';
   
@@ -18,7 +18,7 @@ function Locations(props) {
         <div className='page'>
             {locations && <ul>
                 {locations.results.map((location,index) => (
-                 <li key={index} className='location'>{location.name}</li>
+                 <li onClick={() => {setPage(`encounter/${index + 1 }`)}} key={index} className='location'>{location.name}</li>
                 ))}
             </ul>}
         </div>
