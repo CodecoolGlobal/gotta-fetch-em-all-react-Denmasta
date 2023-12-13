@@ -6,6 +6,16 @@ const usersPokemon = [
     "https://pokeapi.co/api/v2/pokemon/poliwhirl"
 ];
 
+let currentPokemons = '';
+
+if (localStorage.getItem('currentPokemons') !== null){
+    currentPokemons = localStorage.getItem('currentPokemons');
+} else {
+    localStorage.setItem('currentPokemons', usersPokemon);
+    currentPokemons = localStorage.getItem('currentPokemons');
+}
+
+console.log(currentPokemons.split(','));
 
 function Encounter(props){
     const encId = props.encId;
@@ -51,11 +61,12 @@ function Encounter(props){
         const fetchData = async () => {
             try {
                 const result = [];
-                usersPokemon.forEach(async url => {
+                currentPokemons.split(',').forEach(async url => {
                     const response = await fetch(url);
                     const data = await response.json();
                     result.push(data);
                 });
+                console.log(result);
                 setPokemons(result);
             } catch (error) {
                 console.error(error);
