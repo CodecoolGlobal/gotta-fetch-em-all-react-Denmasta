@@ -8,7 +8,10 @@ const usersPokemon = [
 
 
 function Encounter(props){
-    const encId = props.encId
+    const encId = props.encId;
+    const setPage = props.setPage;
+    const setEnemyPokemon = props.setEnemyPokemon;
+    const setAllyPokemon = props.setAllyPokemon;
 
     const locKey = 'https://pokeapi.co/api/v2/location';
 
@@ -61,16 +64,11 @@ function Encounter(props){
         fetchData();
     }, []);
 
-
-    const [selectedAlly, setSelectedAlly] = useState(null);
     
-    const handleAllySelection = (selectedPokemon) => {
-        setSelectedAlly(selectedPokemon);
-    }
 
     return (
         <div>
-            {encounter && !selectedAlly && (
+            {encounter &&  (
             <div className="encounter">
                 <div className="enemy-container">
                     <img src={encounter.sprites.front_default} alt={encounter.name}></img>
@@ -80,24 +78,13 @@ function Encounter(props){
                     <p className="info">Choose your pokemon to fight!</p>
                     <div className="ally-container">
                         {pokemons && pokemons.map((data, index) => (
-                        <div key={index} onClick={() => handleAllySelection(data)}>
+                        <div key={index} onClick={() => {setAllyPokemon(data); setPage('battle'); setEnemyPokemon(encounter)}
+                        }>
                             <img src={data.sprites.front_default} alt={data.name}></img>
                             <p>{data.name}</p>
                         </div>
                         ))}
                     </div>
-                </div>
-            </div>
-            )}
-            {selectedAlly && (
-            <div className="battle">
-                <div className="enemy-container">
-                    <img src={encounter.sprites.front_default} alt={encounter.name}></img>
-                    <p>{encounter.name}</p>
-                </div>
-                <div className="ally-container">
-                    <img src={selectedAlly.sprites.front_default} alt={selectedAlly.name}></img>
-                    <p>{selectedAlly.name}</p>
                 </div>
             </div>
             )}
