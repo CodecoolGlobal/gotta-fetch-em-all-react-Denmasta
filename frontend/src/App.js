@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Locations from './components/Locations';
 import Encounter from './components/Encounter';
 import Battle from './components/Battle';
@@ -22,6 +22,8 @@ function App() {
         return <Locations setPage={setPage}/>
       case "battle":
         return <Battle setPage={setPage} enemyPokemon={enemyPokemon} allyPokemon={allyPokemon}/>
+      default:
+        break;
     }
   }
   return (
