@@ -8,20 +8,18 @@ const usersPokemon = [
 
 let currentPokemons = '';
 
-if (localStorage.getItem('currentPokemons') !== null){
-    currentPokemons = localStorage.getItem('currentPokemons');
-} else {
-    localStorage.setItem('currentPokemons', usersPokemon);
-    currentPokemons = localStorage.getItem('currentPokemons');
-}
-
-console.log(currentPokemons.split(','));
-
 function Encounter(props){
     const encId = props.encId;
     const setPage = props.setPage;
     const setEnemyPokemon = props.setEnemyPokemon;
     const setAllyPokemon = props.setAllyPokemon;
+
+    if (localStorage.getItem('currentPokemons') !== null){
+        currentPokemons = localStorage.getItem('currentPokemons');
+    } else {
+        localStorage.setItem('currentPokemons', usersPokemon);
+        currentPokemons = localStorage.getItem('currentPokemons');
+    }
 
     const locKey = 'https://pokeapi.co/api/v2/location';
 
@@ -66,7 +64,6 @@ function Encounter(props){
                     const data = await response.json();
                     result.push(data);
                 });
-                console.log(result);
                 setPokemons(result);
             } catch (error) {
                 console.error(error);
@@ -74,8 +71,6 @@ function Encounter(props){
         }
         fetchData();
     }, []);
-
-    
 
     return (
         <div>
