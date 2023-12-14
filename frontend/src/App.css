@@ -184,15 +184,63 @@ body {
   color: var(--light);
 }
 
-.App .battle .enemy-container {
+.App .battle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  height: 100vh;
+  margin: auto;
+}
+.App .battle .enemy-container{
+  height: 40%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
   text-align: right;
+}
+.App .battle .slide-in-left {
   animation-duration: 1s;
   animation-name: slidefromleft;
 }
 
-.App .battle .ally-container {
+.App .battle .ally-container{
+  height: 40%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.App .battle .slide-in-right {
   animation-duration: 1s;
   animation-name: slidefromright;
+}
+
+.App .battle .info-container {
+  height: 10%;
+}
+
+.App .battle .info-container button {
+  padding: .5rem .25rem;
+  border: 1px solid var(--light);
+  border-radius: 5px;
+  background-color: var(--light);
+  color: var(--dark);
+  cursor: pointer;
+  transition: all .1s ease-in-out;
+  font-size: .875rem;
+}
+
+.App .battle .info-container button:hover {
+  background-color: var(--accent2);
+  border: 1px solid var(--accent2);
+  color: var(--light);
+}
+
+.App .battle .ally-container img,
+.App .battle .enemy-container img {
+  image-rendering: pixelated;
+  width: 400px;
+  height: 400px;
 }
 
 @keyframes slidefromright {

@@ -41,32 +41,53 @@ function handleAttack(enemy, ally) {
     <div>
       {!gameData.gameOver ? (
           <div className="battle">
-          <div className="enemy-container">
-              <img src={enemyPokemon.sprites.front_default} alt={enemyPokemon.name}></img>
+          <div className="enemy-container slide-in-left">
+            <div>
               <p>{enemyPokemon.name}</p>
               <p>HP{enemyPokemon.stats[0].base_stat}/{gameData.enemy.hp === undefined || gameData.gameStart ? enemyPokemon.stats[0].base_stat : gameData.enemy.hp}</p>
+            </div>
+            <div>
+              <img src={enemyPokemon.sprites.front_default} alt={enemyPokemon.name}></img>
+            </div>
           </div>
-          <div className="ally-container">
+          <div className='info-container'>
+              <p></p>
+              <button onClick={() => handleAttack(enemyPokemon,allyPokemon)}>Attack</button>
+          </div>
+          <div className="ally-container slide-in-right">
+            <div>
               <img src={allyPokemon.sprites.back_default} alt={allyPokemon.name}></img>
+            </div>
+            <div>
               <p>{allyPokemon.name}</p>
               <p>HP{allyPokemon.stats[0].base_stat}/{gameData.ally.hp === undefined || gameData.gameStart ? allyPokemon.stats[0].base_stat : gameData.ally.hp}</p>
+            </div>
           </div>
-          <button onClick={() => handleAttack(enemyPokemon,allyPokemon)}>Attack</button>
         </div>
       ) : (
         <div className="battle">
-          <div>{gameData.winner}</div>
           <div className="enemy-container">
-              <img src={enemyPokemon.sprites.front_default} alt={enemyPokemon.name}></img>
-              <p>{enemyPokemon.name}</p>
-              <p>HP{enemyPokemon.stats[0].base_stat}/{gameData.enemy.hp === undefined ? enemyPokemon.stats[0].base_stat : gameData.enemy.hp}</p>
+              <div>
+                <p>{enemyPokemon.name}</p>
+                <p>HP{enemyPokemon.stats[0].base_stat}/{gameData.enemy.hp === undefined ? enemyPokemon.stats[0].base_stat : gameData.enemy.hp}</p>
+              </div>
+              <div>
+                <img src={enemyPokemon.sprites.front_default} alt={enemyPokemon.name}></img>
+              </div>
+          </div>
+          <div className='info-container'>
+            <div>{gameData.winner}</div>
+            <button onClick={() => {battlehelper.resetBattle(enemyPokemon, allyPokemon); setPage('home')}}>Go home</button>
           </div>
           <div className="ally-container">
-              <img src={allyPokemon.sprites.back_default} alt={allyPokemon.name}></img>
-              <p>{allyPokemon.name}</p>
-              <p>HP{allyPokemon.stats[0].base_stat}/{gameData.ally.hp === undefined ? allyPokemon.stats[0].base_stat : gameData.ally.hp}</p>
+              <div>
+                <img src={allyPokemon.sprites.back_default} alt={allyPokemon.name}></img>
+              </div>
+              <div>
+                <p>{allyPokemon.name}</p>
+                <p>HP{allyPokemon.stats[0].base_stat}/{gameData.ally.hp === undefined ? allyPokemon.stats[0].base_stat : gameData.ally.hp}</p>
+              </div>
           </div>
-          <button onClick={() => {battlehelper.resetBattle(enemyPokemon, allyPokemon); setPage('home')}}>Go home</button>
         </div>
       )}
     </div>

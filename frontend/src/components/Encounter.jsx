@@ -78,6 +78,8 @@ function Encounter(props){
             <div className="encounter">
                 <div className="enemy-container">
                     <img src={encounter.sprites.front_default} alt={encounter.name}></img>
+                </div>
+                <div className="info-container">
                     <p>This location doesn't seem to have any pokémon</p>
                     <button onClick={() => setPage('home')}>get bact to locations</button>
                 </div>

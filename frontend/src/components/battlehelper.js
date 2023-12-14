@@ -9,7 +9,8 @@ let gameData = {
     ally:{},
     gameStart: true,
     gameOver:false,
-    winner:''
+    winner:'',
+    turn:'',
 };
 
 function gameLoop(enemy, ally){
