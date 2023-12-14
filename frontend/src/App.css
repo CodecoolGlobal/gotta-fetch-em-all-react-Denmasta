@@ -183,3 +183,32 @@ body {
   background-color: var(--accent2);
   color: var(--light);
 }
+
+.App .battle .enemy-container {
+  text-align: right;
+  animation-duration: 1s;
+  animation-name: slidefromleft;
+}
+
+.App .battle .ally-container {
+  animation-duration: 1s;
+  animation-name: slidefromright;
+}
+
+@keyframes slidefromright {
+ from {
+  margin-left: 120%;
+ }
+ to {
+  margin-left: 0%;
+ }
+}
+
+@keyframes slidefromleft {
+ from {
+  margin-right: 120%;
+ }
+ to {
+  margin-right: 0%;
+ }
+}
