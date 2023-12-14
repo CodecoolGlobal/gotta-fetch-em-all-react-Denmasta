@@ -122,6 +122,19 @@ body {
   height: 200px;
 }
 
+.pokeball {
+  width: 100px !important;
+  height: 100px !important;
+}
+
+.img-container {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .App .encounter .info-container {
   width: 100%;
   display: flex;
@@ -154,6 +167,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   padding-top: 2rem;
 }
@@ -222,9 +236,13 @@ body {
   height: 10%;
   font-size: 1.25rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.App .battle .info-container button {
+.App .battle .info-container .attack-btn {
   padding: .5rem .25rem;
   border: 1px solid var(--light);
   border-radius: 5px;
@@ -259,6 +277,24 @@ body {
   width: 400px;
 }
 
+.App .battle .attack {
+  animation: shake;
+  animation-name: attack;
+  animation-duration: .25s;
+}
+
+.App .battle .mirroredAttack {
+  animation: shake;
+  animation-name: mirroredAttack;
+  animation-duration: .25s;
+}
+
+.App .battle .defend {
+  animation: shake;
+  animation-name: defend;
+  animation-duration: .5s;
+}
+
 @keyframes slidefromright {
  from {
   margin-left: 120%;
@@ -277,33 +313,55 @@ body {
  }
 }
 
-.w3-large {
-  color: var(--dark);
-  text-align: center !important;
+@keyframes defend {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
-.w3-container.w3-green {
-  color: var(--dark) !important;
+@keyframes attack {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  30% { transform: translate(20px, -20px) rotate(20deg); }
+  60% { transform: translate(40px, -40px) rotate(40deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+@keyframes mirroredAttack {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  25% { transform: translate(20px, -20px) rotate(20deg); }
+  50% { transform: translate(40px, -40px) rotate(40deg); }
+  75% { transform: translate(20px, -20px) rotate(20deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
 }
 
 .healtbar-container {
   position: relative;
   width: 400px;
   height: 30px;
-  background-color: white;
+  background-color: var(--light);
+  border-radius: 5px;
 }
 
 .healtbar-text{
   position:absolute;
   z-index: 3;
-  color: black;
+  color: var(--dark);
   left: 45%;
   top: 5%;
 }
 
 .hp-bar {
-  background-color: green;
+  background-color: rgb(71, 212, 71);
   height: 100%;
   position: relative;
   z-index: 2;
+  border-radius: 5px;
 }

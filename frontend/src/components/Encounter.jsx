@@ -89,16 +89,16 @@ function Encounter(props){
                 </div>
                 <div className="info-container">
                     <p>This location doesn't seem to have any pokémon</p>
-                    <button onClick={() => setPage('home')}>get bact to locations</button>
+                    <button onClick={() => setPage('home')}>get back to locations</button>
                 </div>
             </div>
             )}
-                {encounter && !encounter.name.includes('location') && (
-                    <div className="encounter">
-                        <div className="enemy-container">
-                            <img src={encounter.sprites.front_default} alt={encounter.name}></img>
-                            <p> A wild {encounter.name} appeared!</p>
-                        </div>
+            {encounter && !encounter.name.includes('location') && (
+            <div className="encounter">
+                <div className="enemy-container">
+                    <img src={encounter.sprites.front_default} alt={encounter.name}></img>
+                    <p> A wild {encounter.name} appeared!</p>
+                </div>
                 <div className="info-container">
                     <button onClick={() => setPage('home')}>run away</button>
                     <p className="info">Choose your pokemon to fight!</p>
