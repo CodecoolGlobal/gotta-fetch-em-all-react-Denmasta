@@ -47,9 +47,10 @@ body {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 360px);
+  grid-template-columns: repeat(auto-fill, 320px);
   grid-gap: 1rem;
   justify-content: center;
+  justify-items: center;
   list-style: none;
   margin: 2rem auto;
 }

@@ -15,10 +15,11 @@ let gameData = {
 
 let aiTurnDelay;
 let caughtPokemon = '';
-let currentPokemons = localStorage.getItem('currentPokemons');
+let currentPokemons = '';
 
 function gameLoop(enemy, ally){
 
+    currentPokemons = localStorage.getItem('currentPokemons');
     if (currentEnemyHp === enemy.stats[0].base_stat || currentEnemyHp === Infinity){
         currentEnemyHp = enemy.stats[0].base_stat;
     }
@@ -97,6 +98,7 @@ function gameOver(currentHp, enemy=''){
 }
 
 function resetBattle() {  
+    console.log(currentPokemons);
     if (!currentPokemons.includes(caughtPokemon)) {
         currentPokemons += caughtPokemon;
     }
