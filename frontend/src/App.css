@@ -221,6 +221,7 @@ body {
 .App .battle .info-container {
   height: 10%;
   font-size: 1.25rem;
+  text-align: center;
 }
 
 .App .battle .info-container button {
@@ -283,4 +284,26 @@ body {
 
 .w3-container.w3-green {
   color: var(--dark) !important;
+}
+
+.healtbar-container {
+  position: relative;
+  width: 400px;
+  height: 30px;
+  background-color: white;
+}
+
+.healtbar-text{
+  position:absolute;
+  z-index: 3;
+  color: black;
+  left: 45%;
+  top: 5%;
+}
+
+.hp-bar {
+  background-color: green;
+  height: 100%;
+  position: relative;
+  z-index: 2;
 }

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const usersPokemon = [
     "https://pokeapi.co/api/v2/pokemon/bulbasaur",
     "https://pokeapi.co/api/v2/pokemon/charizard",
-    "https://pokeapi.co/api/v2/pokemon/poliwhirl"
+    "https://pokeapi.co/api/v2/pokemon/arceus"
 ];
 
 let currentPokemons = '';
@@ -13,6 +13,7 @@ function Encounter(props){
     const setPage = props.setPage;
     const setEnemyPokemon = props.setEnemyPokemon;
     const setAllyPokemon = props.setAllyPokemon;
+    const [pokemons, setPokemons] = useState(null);
 
     if (localStorage.getItem('currentPokemons') !== null){
         currentPokemons = localStorage.getItem('currentPokemons');
@@ -20,7 +21,7 @@ function Encounter(props){
         localStorage.setItem('currentPokemons', usersPokemon);
         currentPokemons = localStorage.getItem('currentPokemons');
     }
-
+     
     const locKey = 'https://pokeapi.co/api/v2/location';
 
     const [encounter, setEncounter] = useState(null);
@@ -53,18 +54,25 @@ function Encounter(props){
         .catch(err => console.error(err));
     }, [encId]);
 
-    const [pokemons, setPokemons] = useState(null);
-    
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = [];
-                currentPokemons.split(',').forEach(async url => {
+                if (localStorage.getItem('currentPokemons') !== null){
+                    currentPokemons = localStorage.getItem('currentPokemons');
+                } else {
+                    localStorage.setItem('currentPokemons', usersPokemon);
+                    currentPokemons = localStorage.getItem('currentPokemons');
+                }
+                const fetchPokemonData = async (url) => {
                     const response = await fetch(url);
-                    const data = await response.json();
-                    result.push(data);
-                });
-                setPokemons(result);
+                    return await response.json();
+                }
+                const pokemonData = await Promise.all(
+                    currentPokemons.split(',').map(async (url) => {
+                        return await fetchPokemonData(url);
+                    })
+                );
+                setPokemons(pokemonData);
             } catch (error) {
                 console.error(error);
             }

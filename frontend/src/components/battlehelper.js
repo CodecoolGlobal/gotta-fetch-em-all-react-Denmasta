@@ -25,13 +25,14 @@ function gameLoop(enemy, ally){
         currentAllyHp = ally.stats[0].base_stat
     }
 
-    if (isPlayerTurn){
+    if (isPlayerTurn && !gameData.gameOver){
         gameData.gameStart = false;
         playerTurn(enemy,ally);
     }
-    if (!isPlayerTurn){
+    if (!isPlayerTurn && !gameData.gameOver){
         clearTimeout(aiTurnDelay);
         aiTurnDelay = setTimeout(() => aiTurn(enemy, ally), 2000);
+        //aiTurn(enemy,ally)
     }
 
 }
@@ -79,16 +80,16 @@ function gameOver(currentHp, enemy=''){
     }
 }
 
-function resetBattle(enemy, ally) {
-    console.log('hello');
-    currentEnemyHp = Infinity;
-    currentAllyHp = Infinity;
-    console.log(currentEnemyHp);
+function resetBattle() {
     isPlayerTurn = true;
     gameData.gameOver = false;
     gameData.winner = '';
     gameData.gameStart = true;
     gameData.info = '';
+    gameData.enemy = {};
+    gameData.ally = {};
+    currentEnemyHp = Infinity;
+    currentAllyHp = Infinity;
 }
 
 export default {
