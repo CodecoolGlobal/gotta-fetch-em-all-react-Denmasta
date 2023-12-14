@@ -33,6 +33,7 @@ body {
 }
 
 .title {
+  font-family: var(--title-font);
   text-align: center;
   font-size: 3rem;
 }
@@ -198,6 +199,7 @@ body {
   justify-content: flex-end;
   align-items: flex-start;
   text-align: right;
+  font-size: 1.25rem;
 }
 .App .battle .slide-in-left {
   animation-duration: 1s;
@@ -208,6 +210,7 @@ body {
   height: 40%;
   display: flex;
   align-items: flex-end;
+  font-size: 1.25rem;
 }
 
 .App .battle .slide-in-right {
@@ -217,6 +220,7 @@ body {
 
 .App .battle .info-container {
   height: 10%;
+  font-size: 1.25rem;
 }
 
 .App .battle .info-container button {
@@ -228,6 +232,9 @@ body {
   cursor: pointer;
   transition: all .1s ease-in-out;
   font-size: .875rem;
+  position: absolute;
+  right: 30%;
+  bottom: 5%;
 }
 
 .App .battle .info-container button:hover {
@@ -241,6 +248,14 @@ body {
   image-rendering: pixelated;
   width: 400px;
   height: 400px;
+}
+
+.App .battle .ally-container .ally-data {
+  width: 400px;
+}
+
+.App .battle .enemy-container .enemy-data {
+  width: 400px;
 }
 
 @keyframes slidefromright {
@@ -259,4 +274,13 @@ body {
  to {
   margin-right: 0%;
  }
+}
+
+.w3-large {
+  color: var(--dark);
+  text-align: center !important;
+}
+
+.w3-container.w3-green {
+  color: var(--dark) !important;
 }

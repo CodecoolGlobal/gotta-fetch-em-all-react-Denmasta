@@ -10,8 +10,10 @@ let gameData = {
     gameStart: true,
     gameOver:false,
     winner:'',
-    turn:'',
+    info:''
 };
+
+let aiTurnDelay;
 
 function gameLoop(enemy, ally){
 
@@ -27,28 +29,35 @@ function gameLoop(enemy, ally){
         gameData.gameStart = false;
         playerTurn(enemy,ally);
     }
+    if (!isPlayerTurn){
+        clearTimeout(aiTurnDelay);
+        aiTurnDelay = setTimeout(() => aiTurn(enemy, ally), 2000);
+    }
 
 }
 
 function playerTurn(enemy,ally){
     let Z = Math.floor(Math.random() * (255 - 217)) + 217;
-    let damage = ((((2/5+2)*ally.stats[1].base_stat*60/enemy.stats[2].base_stat)/50)+2)*Z/255;
-    currentEnemyHp = Math.floor(currentEnemyHp - damage) < 0 ? 0 : Math.floor(currentEnemyHp - damage);
+    let damage = Math.floor(((((2/5+2)*ally.stats[1].base_stat*60/enemy.stats[2].base_stat)/50)+2)*Z/255);
+    currentEnemyHp = currentEnemyHp - damage < 0 ? 0 : currentEnemyHp - damage;
     gameData.enemy.hp = currentEnemyHp;
     gameData.ally.damage = damage;
     console.log(currentEnemyHp);
     gameOver(currentEnemyHp, enemy);
     isPlayerTurn = false;
-    aiTurn(enemy, ally);
+    gameData.info = `${ally.name} attacked with ${ally.abilities[0].ability.name.replaceAll('-',' ')} and dealt ${damage} damage.`;
+    /*clearTimeout(aiTurnDelay);
+    aiTurnDelay = setTimeout(() => aiTurn(enemy, ally), 2000);*/
 }
 
 function aiTurn(enemy,ally){
     let Z = Math.floor(Math.random() * (255 - 217)) + 217  ;
-    let damage = ((((2/5+2)*enemy.stats[1].base_stat*60/ally.stats[2].base_stat)/50)+2)*Z/255;
-    currentAllyHp = Math.floor(currentAllyHp - damage) < 0 ? 0 : Math.floor(currentAllyHp - damage);
+    let damage = Math.floor(((((2/5+2)*enemy.stats[1].base_stat*60/ally.stats[2].base_stat)/50)+2)*Z/255);
+    currentAllyHp = currentAllyHp - damage < 0 ? 0 : currentAllyHp - damage;
     gameData.ally.hp = currentAllyHp;
     gameData.enemy.damage = damage;
     console.log(currentAllyHp);
+    gameData.info = `${enemy.name} attacked with ${enemy.abilities[0].ability.name.replaceAll('-',' ')} and dealt ${damage} damage.`
     gameOver(currentAllyHp);
     isPlayerTurn = true;
 }
@@ -79,6 +88,7 @@ function resetBattle(enemy, ally) {
     gameData.gameOver = false;
     gameData.winner = '';
     gameData.gameStart = true;
+    gameData.info = '';
 }
 
 export default {

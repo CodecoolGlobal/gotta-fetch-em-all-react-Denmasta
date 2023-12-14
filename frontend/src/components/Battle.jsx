@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import battlehelper from './battlehelper';
 
 
@@ -15,10 +15,16 @@ export default function Battle(props) {
   }
   localStorage.setItem('currentPokemons',yourPokemons);
 */
+/*
+useEffect(()=> {
+  setGameData({...battlehelper.gameData});      // Question HOW TO MAKE IT WORK
+},[gameData]);
+*/
 console.log(battlehelper.gameData);
 function handleAttack(enemy, ally) {
   battlehelper.gameLoop(enemy,ally);
   setGameData({...battlehelper.gameData});
+  setTimeout(() => setGameData({...battlehelper.gameData}), 2005);
 }
 
   // return (
@@ -42,34 +48,43 @@ function handleAttack(enemy, ally) {
       {!gameData.gameOver ? (
           <div className="battle">
           <div className="enemy-container slide-in-left">
-            <div>
+            <div className='enemy-data'>
               <p>{enemyPokemon.name}</p>
               <p>HP{enemyPokemon.stats[0].base_stat}/{gameData.enemy.hp === undefined || gameData.gameStart ? enemyPokemon.stats[0].base_stat : gameData.enemy.hp}</p>
+              <div className="w3-light-grey w3-large">
+                <div className="w3-container w3-green" style={{width:`${(gameData.enemy.hp/enemyPokemon.stats[0].base_stat)*100}%`, color:'black'}}>{enemyPokemon.stats[0].base_stat}/{gameData.enemy.hp === undefined || gameData.gameStart ? enemyPokemon.stats[0].base_stat : gameData.enemy.hp}</div>
+              </div>
             </div>
             <div>
               <img src={enemyPokemon.sprites.front_default} alt={enemyPokemon.name}></img>
             </div>
           </div>
           <div className='info-container'>
-              <p></p>
+              <p className='info'>{gameData.info}</p>
               <button onClick={() => handleAttack(enemyPokemon,allyPokemon)}>Attack</button>
           </div>
           <div className="ally-container slide-in-right">
             <div>
               <img src={allyPokemon.sprites.back_default} alt={allyPokemon.name}></img>
             </div>
-            <div>
+            <div className='ally-data'>
               <p>{allyPokemon.name}</p>
               <p>HP{allyPokemon.stats[0].base_stat}/{gameData.ally.hp === undefined || gameData.gameStart ? allyPokemon.stats[0].base_stat : gameData.ally.hp}</p>
+              <div className="w3-light-grey w3-large">
+                <div className="w3-container w3-green" style={{width:`${(gameData.ally.hp/allyPokemon.stats[0].base_stat)*100}%`}}>{allyPokemon.stats[0].base_stat}/{gameData.ally.hp === undefined || gameData.gameStart ? allyPokemon.stats[0].base_stat : gameData.ally.hp}</div>
+              </div>
             </div>
           </div>
         </div>
       ) : (
         <div className="battle">
           <div className="enemy-container">
-              <div>
+              <div className='enemy-data'>
                 <p>{enemyPokemon.name}</p>
                 <p>HP{enemyPokemon.stats[0].base_stat}/{gameData.enemy.hp === undefined ? enemyPokemon.stats[0].base_stat : gameData.enemy.hp}</p>
+                <div className="w3-light-grey w3-large">
+                  <div className="w3-container w3-green" style={{width:`${(gameData.enemy.hp/enemyPokemon.stats[0].base_stat)*100}%`}}>{enemyPokemon.stats[0].base_stat}/{gameData.enemy.hp === undefined || gameData.gameStart ? enemyPokemon.stats[0].base_stat : gameData.enemy.hp}</div>
+                </div>
               </div>
               <div>
                 <img src={enemyPokemon.sprites.front_default} alt={enemyPokemon.name}></img>
@@ -83,9 +98,12 @@ function handleAttack(enemy, ally) {
               <div>
                 <img src={allyPokemon.sprites.back_default} alt={allyPokemon.name}></img>
               </div>
-              <div>
+              <div className='ally-data'>
                 <p>{allyPokemon.name}</p>
                 <p>HP{allyPokemon.stats[0].base_stat}/{gameData.ally.hp === undefined ? allyPokemon.stats[0].base_stat : gameData.ally.hp}</p>
+              <div className="w3-light-grey w3-large">
+                <div className="w3-container w3-green" style={{width:`${(gameData.ally.hp/allyPokemon.stats[0].base_stat)*100}%`}}>{allyPokemon.stats[0].base_stat}/{gameData.ally.hp === undefined || gameData.gameStart ? allyPokemon.stats[0].base_stat : gameData.ally.hp}</div>
+              </div>
               </div>
           </div>
         </div>
