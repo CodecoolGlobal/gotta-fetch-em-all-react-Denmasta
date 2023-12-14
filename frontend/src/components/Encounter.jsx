@@ -88,19 +88,19 @@ function Encounter(props){
                         <div className="enemy-container">
                             <img src={encounter.sprites.front_default} alt={encounter.name}></img>
                             <p> A wild {encounter.name} appeared!</p>
-                            <button onClick={() => setPage('home')}>run away</button>
                         </div>
-                <div>
+                <div className="info-container">
+                    <button onClick={() => setPage('home')}>run away</button>
                     <p className="info">Choose your pokemon to fight!</p>
-                    <div className="ally-container">
-                        {pokemons && pokemons.map((data, index) => (
-                        <div key={index} onClick={() => {setAllyPokemon(data); setPage('battle'); setEnemyPokemon(encounter)}
-                        }>
-                            <img src={data.sprites.front_default} alt={data.name}></img>
-                            <p>{data.name}</p>
-                        </div>
-                        ))}
+                </div>
+                <div className="ally-container">
+                    {pokemons && pokemons.map((data, index) => (
+                    <div key={index} onClick={() => {setAllyPokemon(data); setPage('battle'); setEnemyPokemon(encounter)}
+                    }>
+                        <img src={data.sprites.front_default} alt={data.name}></img>
+                        <p>{data.name}</p>
                     </div>
+                    ))}
                 </div>
             </div>
             )}
