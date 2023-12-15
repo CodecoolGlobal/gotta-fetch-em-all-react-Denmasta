@@ -244,6 +244,12 @@ body {
 }
 
 .App .battle .info-container .attack-btn {
+  position: absolute;
+  right: 30%;
+  bottom: 5%;
+}
+
+.App .battle .info-container button {
   padding: .5rem .25rem;
   border: 1px solid var(--light);
   border-radius: 5px;
@@ -252,9 +258,6 @@ body {
   cursor: pointer;
   transition: all .1s ease-in-out;
   font-size: .875rem;
-  position: absolute;
-  right: 30%;
-  bottom: 5%;
 }
 
 .App .battle .info-container button:hover {
