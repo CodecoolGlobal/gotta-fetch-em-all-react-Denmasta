@@ -31,6 +31,6 @@ function Locations(props) {
             </ul>}
         </div>
     );
-};
+}
 
 export default Locations;

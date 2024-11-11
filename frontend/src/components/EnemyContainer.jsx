@@ -5,7 +5,7 @@ import battlehelper from './battlehelper';
 export default function EnemyContainer({enemyPokemon}) {
 
   return (
-    <div className="enemy-container slide-in-left">
+    <div className="enemy-container slide-in-left" data-testid="enemy-container">
         <div className='enemy-data'>
             <p>{enemyPokemon.name}</p>
             <Healtbar currentHealt={battlehelper.gameData.enemy.hp} healt={enemyPokemon.stats[0].base_stat}/>

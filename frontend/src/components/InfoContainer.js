@@ -10,7 +10,7 @@ function handleAttack(enemy, ally) {
 }
 
   return (
-    <div className='info-container'>
+    <div className='info-container' data-testid='info-container'>
         {!battlehelper.gameData.gameOver ? (
             <div>
                 <p className='info'>{battlehelper.gameData.info}</p>
