@@ -1,6 +1,9 @@
 # Gotta-fetch-em-all
 
 ## About
+
+![Product Name Screen Shot][product-screenshot]
+
 the coolest Pokemon site!
 - Core Features:
 	- 20 Locations
@@ -8,7 +11,11 @@ the coolest Pokemon site!
   - Lots of Pokémons to catch!
  
 ## Built using: 
-- React native
+
+<p align="left">
+  <a href="https://react.dev/" target="_blank"><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React"/></a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank"><img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS"/></a>
+</p>
 
 ## Prerequisites: 
 - Terminal / Powershell
@@ -48,6 +55,13 @@ the coolest Pokemon site!
   - Note: The way to project is setup on the repo, it expects the port `3000`. The only port that needs to open on your machine is `3000`.
 
 ## Contributors
-- qeed97
-- zsoltdzsugan
-- Denmasta
+
+![zsoltdzsugan's GitHub Profile](https://img.shields.io/badge/GITHUB-ZSOLTDZSUGAN-blue?logo=github&logoColor=white&link=https%3A%2F%2Fgithub.com%2Fzsoltdzsugan)
+![Qeed97's GitHub Profile](https://img.shields.io/badge/GITHUB-QEED97-blue?logo=github&logoColor=white&link=https%3A%2F%2Fgithub.com%2Fqeed97)
+![Denmasta's GitHub Profile](https://img.shields.io/badge/GITHUB-DENMASTA-blue?logo=github&logoColor=white&link=https%3A%2F%2Fgithub.com%2FDenmasta)
+
+
+
+
+
+[product-screenshot]: POKEMONUI.PNG
